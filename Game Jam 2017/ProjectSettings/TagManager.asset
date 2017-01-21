@@ -6,6 +6,8 @@ TagManager:
   tags:
   - groundGO
   - levelHandler
+  - Meter
+  - Item
   layers:
   - Default
   - TransparentFX

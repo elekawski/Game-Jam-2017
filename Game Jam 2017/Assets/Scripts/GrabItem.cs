@@ -2,10 +2,15 @@
 using System.Collections;
 
 public class GrabItem : MonoBehaviour {
+
+    public GameObject coldMeter;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "CharacterRobotBoy")
         {
+            coldMeter = GameObject.FindWithTag("Meter");
+            coldMeter.GetComponent<BarScript>().WarmUp(0.5f);
             GetComponent<AudioSource>().Play();
             Destroy(GetComponent<BoxCollider2D>());
             GetComponent<Renderer>().enabled = false;
