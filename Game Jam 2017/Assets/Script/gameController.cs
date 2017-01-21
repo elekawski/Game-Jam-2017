@@ -15,6 +15,8 @@ public class gameController : MonoBehaviour {
 
     private bool groundBool;
 
+    private GameObject levelH;
+
     private GameObject ground;
     private Rigidbody2D rb;
 
@@ -27,14 +29,14 @@ public class gameController : MonoBehaviour {
 
 
         ground = GameObject.FindGameObjectWithTag("groundGO");
-        
+        levelH = GameObject.FindGameObjectWithTag("levelHandler");
     }
 	
 	// Update is called once per frame
 	void Update () {
 
         moveDirectionX = Input.GetAxis("Horizontal");
-        moveDirectionX *= -playerSpeed;
+        moveDirectionX *= playerSpeed;
         //moveDirectionY -= gravity * Time.deltaTime;
 
         if ((Input.GetButtonDown("Jump") && groundBool))
@@ -43,7 +45,7 @@ public class gameController : MonoBehaviour {
             rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
         }
 
-        transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
+        levelH.transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
         
 
     }
