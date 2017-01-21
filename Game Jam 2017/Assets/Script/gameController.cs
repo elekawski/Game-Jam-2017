@@ -3,6 +3,8 @@ using System.Collections;
 
 public class gameController : MonoBehaviour {
 
+    Animation playAni;
+
     public float playerSpeed;
     private float moveDirectionX;
     private float moveDirectionY;
@@ -26,10 +28,12 @@ public class gameController : MonoBehaviour {
         groundBool = false;
 
         rb = GetComponent<Rigidbody2D>();
-
+        playAni = GetComponent<Animation>();
 
         ground = GameObject.FindGameObjectWithTag("groundGO");
         levelH = GameObject.FindGameObjectWithTag("levelHandler");
+
+        playAni.Play("idle");
     }
 	
 	// Update is called once per frame
