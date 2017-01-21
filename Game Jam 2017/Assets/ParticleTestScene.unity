@@ -90,6 +90,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD:Game Jam 2017/Assets/ParticleTestScene.unity
 --- !u!1 &317386943
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,3 +2061,5 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+=======
+>>>>>>> 511fd30a6c92deb4f84a09486d496eebbc784724:Game Jam 2017/Assets/TestScene.unity
