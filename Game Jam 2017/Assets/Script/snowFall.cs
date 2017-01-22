@@ -14,9 +14,12 @@ public class snowFall : MonoBehaviour {
     private float ampXFactor;
     private float gravityFactor;
 
+    private GameObject sfHandler;
+    private float speedMod;
+
     // Use this for initialization
     void Start () {
-        scaleFactor = Random.Range(0.1f, 1.0f);
+        scaleFactor = Random.Range(0.5f, 1.0f);
         omegaXFactor = Random.Range(0.1f, 1.0f);
         ampXFactor = Random.Range(0.1f, 1.0f);
         gravityFactor = Random.Range(0.1f, 2.0f);
@@ -24,16 +27,19 @@ public class snowFall : MonoBehaviour {
         transform.localScale = new Vector3(transform.localScale.x * scaleFactor, transform.localScale.y * scaleFactor, transform.localScale.z);
         ampX *= ampXFactor;
         omegaX *= omegaXFactor;
+
+        sfHandler = GameObject.FindGameObjectWithTag("snowFallHandler");
     }
 	
 	// Update is called once per frame
 	void Update () {
         index += Time.deltaTime;
 
+        speedMod = sfHandler.GetComponent<snowFallGenerate>().speedMotifier;
 
         float x = ampX * Mathf.Cos(omegaX * index);
         //transform.position.x = new Vector3(x, 0, 0);
-        transform.Translate(Vector3.up * -0.089f * gravityFactor * Time.deltaTime);
+        transform.Translate(Vector3.up * -0.089f * gravityFactor * speedMod * Time.deltaTime);
         transform.Translate(Vector3.right * x);
 
         if(transform.position.y < -5.5f)

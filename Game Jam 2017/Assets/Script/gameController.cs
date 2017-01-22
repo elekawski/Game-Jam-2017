@@ -3,7 +3,7 @@ using System.Collections;
 
 public class gameController : MonoBehaviour {
 
-    Animation playAni;
+    Animator playAni;
 
     public float playerSpeed;
     private float moveDirectionX;
@@ -22,26 +22,42 @@ public class gameController : MonoBehaviour {
     private GameObject ground;
     private Rigidbody2D rb;
 
+    private GameObject sfHandler;
+    private float speedMod;
+
     // Use this for initialization
     void Start () {
 
         groundBool = false;
 
         rb = GetComponent<Rigidbody2D>();
-        playAni = GetComponent<Animation>();
+        playAni = GetComponent<Animator>();
 
         ground = GameObject.FindGameObjectWithTag("groundGO");
         levelH = GameObject.FindGameObjectWithTag("levelHandler");
+        sfHandler = GameObject.FindGameObjectWithTag("snowFallHandler");
 
-        playAni.Play("idle");
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
 
+        speedMod = sfHandler.GetComponent<snowFallGenerate>().speedMotifier;
+
+        playAni.speed = speedMod;
+
         moveDirectionX = Input.GetAxis("Horizontal");
+
+        if (moveDirectionX < 0.0f)
+        {
+            moveDirectionX = 0.0f;
+        }
+
         moveDirectionX *= playerSpeed;
         //moveDirectionY -= gravity * Time.deltaTime;
+        
+        
 
         if ((Input.GetButtonDown("Jump") && groundBool))
         {

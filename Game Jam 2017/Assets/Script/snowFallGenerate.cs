@@ -13,10 +13,17 @@ public class snowFallGenerate : MonoBehaviour {
 
     public int startingNum;
 
+
+    public float speedMotifier;
+    private float timer2;
+    private float timerCur2;
+
     // Use this for initialization
     void Start () {
 
         timerCur = timer;
+
+        timer2 = timerCur2  = 60.0f;
 
         for (int i = 0; i < startingNum; i++)
         {
@@ -25,9 +32,9 @@ public class snowFallGenerate : MonoBehaviour {
 
             Instantiate(snowPrefab, new Vector3(ranX, ranY, 0.0f), Quaternion.identity);
         }
-        
-        
 
+
+        speedMotifier = 1.0f;
 
     }
 	
@@ -35,8 +42,9 @@ public class snowFallGenerate : MonoBehaviour {
 	void Update () {
 
         timerCur -= Time.deltaTime;
+        timerCur2 -= Time.deltaTime;
 
-        if(timerCur < 0.0f)
+        if (timerCur < 0.0f)
         {
             float ranX = Random.Range(-5.5f, 5.5f);
 
@@ -45,7 +53,15 @@ public class snowFallGenerate : MonoBehaviour {
             timerCur = timer;
         }
 
-
-
+        //print(timerCur2);
+        if(speedMotifier < 200.0f)
+        { 
+            if (timerCur2 < 0.0f)
+            {
+                timer2 *=  0.8f;
+                timerCur2 = timer2;
+                speedMotifier *= 1.5f;
+            }
+        }
     }
 }

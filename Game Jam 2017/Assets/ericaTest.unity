@@ -462,6 +462,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010631025660, guid: 879d71f9ad352ae4a9404d07b3e60572, type: 2}
+      propertyPath: m_TagString
+      value: snowFallHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010267352312, guid: 879d71f9ad352ae4a9404d07b3e60572,
+        type: 2}
+      propertyPath: timer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010267352312, guid: 879d71f9ad352ae4a9404d07b3e60572,
+        type: 2}
+      propertyPath: startingNum
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 879d71f9ad352ae4a9404d07b3e60572, type: 2}
   m_IsPrefabParent: 0

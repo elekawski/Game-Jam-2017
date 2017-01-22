@@ -8,6 +8,8 @@ TagManager:
   - levelHandler
   - Meter
   - Item
+  - snowFallHandler
+  - snowFlake
   layers:
   - Default
   - TransparentFX
