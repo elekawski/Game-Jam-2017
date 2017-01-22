@@ -9,12 +9,14 @@ public class IcePatch : MonoBehaviour {
     private bool complete;
     private bool playerEntered;
     private int timesPressed;
+    public bool disableMove;
 
     // Use this for initialization
     void Start ()
     {
         complete = false;
         playerEntered = false;
+        disableMove = false;
     }
 
     // Update is called once per frame
@@ -34,6 +36,8 @@ public class IcePatch : MonoBehaviour {
                 complete = true;
 
                 print("Safe!");
+
+                disableMove = false;
             }
         }
 	}
@@ -49,12 +53,12 @@ public class IcePatch : MonoBehaviour {
                 coldMeter = GameObject.FindWithTag("Meter");
 
                 player = GameObject.FindWithTag("Player");
-
-                //player.GetComponent<gameController>().directionX = 0;
-
+                
                 playerEntered = true;
 
                 StartCoroutine(CatchBalance());
+
+                disableMove = true;
 
             }
         }
@@ -71,6 +75,8 @@ public class IcePatch : MonoBehaviour {
             coldMeter.GetComponent<BarScript>().CoolDown(0.1f);
 
             complete = true;
+
+            disableMove = false;
         }
     }
 }

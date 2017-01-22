@@ -6,7 +6,7 @@ public class gameController : MonoBehaviour {
     Animator playAni;
 
     public float playerSpeed;
-    private float moveDirectionX;
+    public float moveDirectionX;
     private float moveDirectionY;
     private float moveDirectionYG;
     public float jumpSpeed;
@@ -27,6 +27,12 @@ public class gameController : MonoBehaviour {
     private GameObject sfHandler;
     private float speedMod;
 
+    private GameObject icepatch;
+    private GameObject snowPile;
+
+
+    private bool playerSlipping;
+
     // Use this for initialization
     void Start () {
 
@@ -39,11 +45,16 @@ public class gameController : MonoBehaviour {
         levelH = GameObject.FindGameObjectWithTag("levelHandler");
         sfHandler = GameObject.FindGameObjectWithTag("snowFallHandler");
 
+        icepatch = GameObject.FindGameObjectWithTag("icePatch");
+
         coffeeGO = GameObject.FindGameObjectWithTag("Item");
+        snowPile = GameObject.FindGameObjectWithTag("snowPile");
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        playerSlipping = icepatch.GetComponent<IcePatch>().disableMove;
 
         speedMod = sfHandler.GetComponent<snowFallGenerate>().speedMotifier;
 
@@ -51,7 +62,7 @@ public class gameController : MonoBehaviour {
 
         moveDirectionX = Input.GetAxis("Horizontal");
 
-        if (moveDirectionX < 0.0f)
+        if (moveDirectionX < 0.0f || playerSlipping)
         {
             moveDirectionX = 0.0f;
         }
@@ -61,7 +72,7 @@ public class gameController : MonoBehaviour {
         
         
 
-        if ((Input.GetButtonDown("Jump") && groundBool))
+        if ((Input.GetButtonDown("Jump") && groundBool && !playerSlipping))
         {
             groundBool = false;
             rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
@@ -69,6 +80,8 @@ public class gameController : MonoBehaviour {
 
         levelH.transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
         coffeeGO.transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
+        icepatch.transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
+        snowPile.transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
 
     }
 

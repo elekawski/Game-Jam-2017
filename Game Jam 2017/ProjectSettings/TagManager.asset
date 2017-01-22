@@ -12,6 +12,8 @@ TagManager:
   - snowFlake
   - gameOver
   - carGO
+  - icePatch
+  - snowPile
   layers:
   - Default
   - TransparentFX
