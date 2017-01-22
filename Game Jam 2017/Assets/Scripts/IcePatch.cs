@@ -29,7 +29,7 @@ public class IcePatch : MonoBehaviour {
                 timesPressed += 1;
             }
 
-            if (timesPressed >= 5)
+            if (timesPressed >= 3)
             {
                 StopCoroutine(CatchBalance());
 

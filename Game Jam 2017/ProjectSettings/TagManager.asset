@@ -14,6 +14,7 @@ TagManager:
   - carGO
   - icePatch
   - snowPile
+  - leftCollider
   layers:
   - Default
   - TransparentFX
