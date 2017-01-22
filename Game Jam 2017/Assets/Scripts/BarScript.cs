@@ -69,4 +69,9 @@ public class BarScript : MonoBehaviour {
     {
         StartCoroutine(Increase(increaseAmount));
     }
+    public void CoolDown(float decreaseAmount)
+    {
+        content.fillAmount -= decreaseAmount;
+
+    }
 }
