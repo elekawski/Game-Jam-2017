@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets._2D;
 
 public class BarScript : MonoBehaviour {
 
@@ -13,8 +14,10 @@ public class BarScript : MonoBehaviour {
 
     public float drainAmount = 0.0001f;
 
-	// Use this for initialization
-	void Start ()
+    public GameObject player;
+
+    // Use this for initialization
+    void Start ()
     {
 	
 	}
@@ -25,6 +28,14 @@ public class BarScript : MonoBehaviour {
         if (drainMeter)
         {
             Deplete();
+        }
+
+        if(content.fillAmount <= 0)
+        {
+            player = GameObject.FindWithTag("Player");
+            Destroy(player.GetComponent<CircleCollider2D>());
+            player.GetComponent<Renderer>().enabled = false;
+            Destroy(player);
         }
     }
 
