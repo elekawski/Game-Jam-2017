@@ -7,10 +7,10 @@ public class GrabItem : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "CharacterRobotBoy")
+        if (other.gameObject.tag == "Player")
         {
             coldMeter = GameObject.FindWithTag("Meter");
-            coldMeter.GetComponent<BarScript>().WarmUp(0.5f);
+            coldMeter.GetComponent<BarScript>().WarmUp(0.1f);
             GetComponent<AudioSource>().Play();
             Destroy(GetComponent<BoxCollider2D>());
             GetComponent<Renderer>().enabled = false;
