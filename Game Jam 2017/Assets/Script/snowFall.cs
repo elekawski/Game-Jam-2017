@@ -42,11 +42,12 @@ public class snowFall : MonoBehaviour {
         transform.Translate(Vector3.up * -0.089f * gravityFactor * speedMod * Time.deltaTime);
         transform.Translate(Vector3.right * x);
 
-        if(transform.position.y < -5.5f)
+        if(transform.position.y < -5.6f)
         {
-            float ranX = Random.Range(-5.5f, 5.5f);
+            float ranX = Random.Range(-8.7f, 8.7f);
+            float ranZ = Random.Range(-1.5f, 0.0f);
 
-            transform.position = new Vector3 (ranX, 2.8f,0.0f);
+            transform.position = new Vector3 (ranX, 4.1f, ranZ);
 
             transform.localScale = new Vector3(transform.localScale.x * scaleFactor, transform.localScale.y * scaleFactor, transform.localScale.z);
             ampX *= ampXFactor;

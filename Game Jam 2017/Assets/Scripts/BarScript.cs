@@ -12,19 +12,29 @@ public class BarScript : MonoBehaviour {
 
     private bool drainMeter = true;
 
-    public float drainAmount = 0.0001f;
+    public float drainAmount = 0.0000001f;
 
     public GameObject player;
+
+    private GameObject GOScreen;
+
+    private GameObject sfHandler;
+    private float speedMod;
 
     // Use this for initialization
     void Start ()
     {
-	
-	}
+        GOScreen = GameObject.FindGameObjectWithTag("gameOver");
+        sfHandler = GameObject.FindGameObjectWithTag("snowFallHandler");
+        GOScreen.transform.position = new Vector3(0.25f, 1000, -5);
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        speedMod = sfHandler.GetComponent<snowFallGenerate>().speedMotifier;
+
         if (drainMeter)
         {
             Deplete();
@@ -33,9 +43,11 @@ public class BarScript : MonoBehaviour {
         if(content.fillAmount <= 0)
         {
             player = GameObject.FindWithTag("Player");
-            Destroy(player.GetComponent<CircleCollider2D>());
+            Destroy(player.GetComponent<BoxCollider2D>());
             player.GetComponent<Renderer>().enabled = false;
             Destroy(player);
+            GOScreen.transform.position = new Vector3(0.25f, -0.5f, -5);
+
         }
     }
 
@@ -51,7 +63,7 @@ public class BarScript : MonoBehaviour {
 
     private void Deplete()
     {
-        content.fillAmount -= drainAmount;
+        content.fillAmount -= (drainAmount * speedMod);
     }
 
     IEnumerator Increase(float increaseAmount)

@@ -19,6 +19,8 @@ public class gameController : MonoBehaviour {
 
     private GameObject levelH;
 
+    private GameObject coffeeGO;
+
     private GameObject ground;
     private Rigidbody2D rb;
 
@@ -37,7 +39,7 @@ public class gameController : MonoBehaviour {
         levelH = GameObject.FindGameObjectWithTag("levelHandler");
         sfHandler = GameObject.FindGameObjectWithTag("snowFallHandler");
 
-        
+        coffeeGO = GameObject.FindGameObjectWithTag("Item");
     }
 	
 	// Update is called once per frame
@@ -66,7 +68,7 @@ public class gameController : MonoBehaviour {
         }
 
         levelH.transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
-        
+        coffeeGO.transform.Translate(Vector3.left * moveDirectionX * Time.deltaTime);
 
     }
 

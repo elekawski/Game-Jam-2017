@@ -10,6 +10,8 @@ TagManager:
   - Item
   - snowFallHandler
   - snowFlake
+  - gameOver
+  - carGO
   layers:
   - Default
   - TransparentFX
